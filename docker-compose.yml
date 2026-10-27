@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  eden:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: eden-dev
+    working_dir: /workspace/web2py
+    volumes:
+      - .:/workspace/web2py/applications/eden
+    ports:
+      - "18000:8000"
+    tty: true
+    stdin_open: true
+    command: python3 web2py.py --no_gui -a "SMEG22026" -k /workspace/key.pem -c /workspace/cert.pem -i 0.0.0.0 -p 8000
